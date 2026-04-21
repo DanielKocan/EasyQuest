@@ -7,6 +7,10 @@ A visual quest graph editor plugin for Unreal Engine 5, built to make quest auth
 
 ---
 
+[📖 Wiki/Documentation - manual and tutorials](https://github.com/DanielKocan/EasyQuest/wiki)
+
+---
+
 ## Overview
 
 EasyQuest provides a node-based graph editor for designing quest systems in Unreal Engine 5. Quests are authored visually as graphs, serialized into a custom asset (`UEasyQuestAsset`), and consumed at runtime by your game's quest manager.
