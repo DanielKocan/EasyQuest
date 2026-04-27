@@ -2,22 +2,16 @@
 
 A visual quest graph editor plugin for Unreal Engine 5, built to make quest authoring fast and intuitive directly inside the editor.
 
-![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+> ⚠️ **Work in Progress** - This repository showcases my approach and architecture for the quest system. The full implementation is part of an unannounced team project. Code snippets and plugin source are shared for reference only.
 
----
+## Documentation
 
-[📖 Wiki/Documentation - manual and tutorials](https://github.com/DanielKocan/EasyQuest/wiki)
+[📖 Wiki/Documentation - manual and tutorial](https://github.com/DanielKocan/EasyQuest/wiki)
 
----
+## Acknowledgements
 
-## Overview
-
-EasyQuest provides a node-based graph editor for designing quest systems in Unreal Engine 5. Quests are authored visually as graphs, serialized into a custom asset (`UEasyQuestAsset`), and consumed at runtime by your game's quest manager.
-
-The plugin is split into two modules:
-- **EasyQuestEditor** — the graph editor UI, node widgets, schema, and asset factory
-- **EasyQuestRuntime** — the runtime graph data, asset, and node info classes
+- [Graph Editor Tutorial by kirby561](https://www.youtube.com/watch?v=4PYkpj-Xwos) - excellent walkthrough on building custom graph editors in Unreal Engine that helped me get started with the editor module
+- [DlgSystem](https://github.com/NotYetGames/DlgSystem) - fantastic open source dialogue plugin by NotYetGames, I extended it with two custom node types (`UDlgQuestNode` and `UDlgQuestCondition`) to integrate quests directly into dialogue graphs
 
 ---
 
@@ -32,29 +26,39 @@ The plugin is split into two modules:
 
 ---
 
-## Plugin Structure
+## Overview
+
+EasyQuest provides a node-based graph editor for designing quest systems in Unreal Engine 5. Quests are authored visually as graphs, serialized into a custom asset (`UEasyQuestAsset`), and consumed at runtime by your game's quest manager.
+
+The plugin itself is split into two modules:
+- **EasyQuestEditor** - the graph editor UI, node widgets, schema, and asset factory
+- **EasyQuestRuntime** - the runtime graph data, asset, and node info classes
+
+## Repository Structure
 
 ```
-EasyQuest/
-├── Source/
-│   ├── EasyQuestEditor/        # Editor module
-│   │   ├── Private/
-│   │   │   ├── EasyQuestEditorApp.cpp      # Main editor application
-│   │   │   ├── EasyQuestGraphSchema.cpp    # Connection rules
-│   │   │   ├── EasyQuestGraphNode.cpp      # UEdGraphNode subclass
-│   │   │   ├── SEasyQuestGraphNode.cpp     # Slate node widget
-│   │   │   └── ...
-│   │   └── Public/
-│   └── EasyQuestRuntime/       # Runtime module
-│       ├── Private/
-│       │   ├── EasyQuestAsset.cpp
-│       │   ├── EasyQuestRuntimeGraph.cpp
-│       │   └── EasyQuestNodeInfo.cpp
-│       └── Public/
-│           ├── EasyQuestAsset.h
-│           ├── EasyQuestRuntimeGraph.h     # Pin/Node/Graph runtime types
-│           └── EasyQuestNodeInfo.h         # Quest node data
+EasyQuest/                        <- reusable plugin (graph editor + runtime)
+  Source/
+    EasyQuestEditor/              <- graph editor UI, schema, node widgets, asset factory
+     ...
+    EasyQuestRuntime/             <- runtime graph data and asset classes
+     ...
+           
+QuestSystem/                      <- game-side implementation built on top of the plugin
+  Private/
+    GameData/                     <- typed key/value tracker, Blueprint library, debug overlay
+     ...
+    Quest/                        <- quest state machine, save/load, widgets, trigger actors
+     ...
+  Public/
+    GameData/                     <- tracker types, keys, settings, subsystem interface
+     ...
+    Quest/                        <- quest interfaces, manager, save game, DlgSystem extensions
+     ...
 ```
+
+> The `EasyQuest` plugin is self-contained and can be dropped into any UE5 project.  
+> `QuestSystem` shows how I integrated it into our game, including the runtime manager, save system, designer-facing trigger actors, and game data tracker.
 
 ---
 
