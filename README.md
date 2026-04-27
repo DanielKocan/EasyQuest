@@ -1,6 +1,6 @@
 # EasyQuest
 
-A visual quest graph editor plugin for Unreal Engine 5, built to make quest authoring fast and intuitive directly inside the editor.
+A visual quest graph editor plugin for Unreal Engine 5, built to make quest creation fast and intuitive directly inside the editor.
 
 📄 **Full breakdown of the system, design decisions, and videos:** [https://danielkocan.github.io/projects/quests#](https://danielkocan.github.io/projects/quests#)
 
@@ -19,12 +19,13 @@ A visual quest graph editor plugin for Unreal Engine 5, built to make quest auth
 
 ## Features
 
-- **Visual graph editor** — node-based quest authoring with drag-and-drop connections
-- **Multi-input pin support** — connect multiple predecessor quests to a single node, allowing complex unlock conditions (e.g. complete Quest A and Quest B to unlock Quest C)
-- **Custom node properties** — each quest node exposes a title, description, completion checkbox, and dialogue responses directly in the graph
-- **Properties panel** — selected node details shown in a dedicated dockable panel inside the editor
-- **Asset-based** — quests are stored as `UEasyQuestAsset` assets, loadable via Project Settings or directly in code
-- **Runtime graph** — serialized into `UEasyQuestRuntimeGraph` / `UEasyQuestRuntimeNode` / `UEasyQuestRuntimePin` for use at runtime without editor dependencies
+- **Designer-owned completion logic** - `QuestTriggerActor` exposes Blueprint events for quest start, completion, and per-tick condition checking, giving designers full freedom to define quest behavior without writing C++
+- **Visual graph editor** - node-based quest authoring with drag-and-drop connections
+- **Multi-input pin support** - connect multiple predecessor quests to a single node, allowing complex unlock conditions (e.g. complete Quest A and Quest B to unlock Quest C)
+- **Custom node properties** - each quest node exposes a title, description, completion checkbox, and dialogue responses directly in the graph
+- **Properties panel** - selected node details shown in a dedicated dockable panel inside the editor
+- **Asset-based** - quests are stored as `UEasyQuestAsset` assets, loadable via Project Settings or directly in code
+- **Runtime graph** - serialized into `UEasyQuestRuntimeGraph` / `UEasyQuestRuntimeNode` / `UEasyQuestRuntimePin` for use at runtime without editor dependencies
 
 ---
 
