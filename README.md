@@ -2,6 +2,8 @@
 
 A visual quest graph editor plugin for Unreal Engine 5, built to make quest authoring fast and intuitive directly inside the editor.
 
+📄 **Full breakdown of the system, design decisions, and videos:** [https://danielkocan.github.io/projects/quests#](https://danielkocan.github.io/projects/quests#)
+
 > ⚠️ **Work in Progress** - This repository showcases my approach and architecture for the quest system. The full implementation is part of an unannounced team project. Code snippets and plugin source are shared for reference only.
 
 ## Documentation
